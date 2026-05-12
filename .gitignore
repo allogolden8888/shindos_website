@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Builds
+frontend/dist
+backend/.next/
+backend/out/
+build/
+
+# Env & secrets (keep examples only)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+
+# Uploads (keep folder marker)
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+
+# Tooling
+.vercel
+*.tsbuildinfo
+coverage/
+.idea/
+.vscode/*
+!.vscode/extensions.json
