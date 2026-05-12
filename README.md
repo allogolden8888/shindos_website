@@ -71,7 +71,18 @@ The landing can be built as **pure static files**: content and calculator rates 
 
 **Updating text/slides/rates for the static site:** change `backend/data/content.json` (via local admin or by hand), then either commit after `cd frontend && npm run sync-content`, or rely on the workflow copy from `backend/data` on each build.
 
-**Admin link from static site:** set repository variable **`ADMIN_BASE_URL`** (Settings → Secrets and variables → Actions → Variables) to your real backend URL, e.g. `https://your-api.example.com`. The `/admin` route on the static site redirects there. If unset, the build falls back to `localhost` (only for local static preview).
+**Admin link from static site:** optional repository variable **`ADMIN_BASE_URL`**. To use it, add to the workflow under the `Build static site` step:
+
+```yaml
+env:
+  VITE_BASE_PATH: /${{ github.event.repository.name }}/
+  VITE_CONTENT_SOURCE: static
+  VITE_ADMIN_BASE_URL: ${{ vars.ADMIN_BASE_URL }}
+```
+
+(Settings → Secrets and variables → Actions → Variables → `ADMIN_BASE_URL` = your Next.js origin, e.g. `https://api.example.com`.)
+
+If you omit this, the static bundle still builds; `/admin` falls back to `VITE_API_BASE_URL` or `http://localhost:3000` from `AdminRedirectPage.vue`.
 
 **Local static preview:**
 ```bash

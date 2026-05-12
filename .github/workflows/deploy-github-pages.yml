@@ -24,19 +24,30 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          node-version: "20"
 
-      - name: Install and build (static + JSON from repo)
+      - name: Verify repo layout
+        run: |
+          test -f backend/data/content.json
+          test -f frontend/package-lock.json
+          test -f frontend/scripts/sync-content.mjs
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build static site
         working-directory: frontend
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
           VITE_CONTENT_SOURCE: static
-          VITE_ADMIN_BASE_URL: ${{ vars.ADMIN_BASE_URL }}
+        run: npm run build:static
+
+      - name: Verify dist
         run: |
-          npm ci
-          npm run build:static
+          test -f frontend/dist/index.html
+          test -f frontend/dist/404.html
+          test -f frontend/dist/content.json
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
