@@ -1,0 +1,61 @@
+{
+  "hero": {
+    "title": "Insurance helps you protect your future expenses",
+    "description": "This educational landing page explains the basics of insurance and gives quick premium estimates for popular products in Uzbekistan."
+  },
+  "selling": {
+    "qrUrl": "https://epolisi.uz/policy/osgo/calculate?s_p_id=55",
+    "ctaUrl": "https://epolisi.uz/policy/osgo/calculate?s_p_id=55"
+  },
+  "contact": {
+    "portalUrl": "agent.epolisi.uz",
+    "login": "+998(99)000-6048",
+    "password": "Shindos01"
+  },
+  "featuredSlides": [
+    {
+      "productSlug": "auto",
+      "title": "Auto insurance",
+      "description": "Comprehensive and liability options for private drivers.",
+      "imageUrl": "https://placehold.co/1200x520/6f5bff/ffffff?text=Auto+Insurance"
+    },
+    {
+      "productSlug": "property",
+      "title": "Property insurance",
+      "description": "Protect homes and apartments from common daily risks.",
+      "imageUrl": "https://placehold.co/1200x520/3b82f6/ffffff?text=Property+Insurance"
+    },
+    {
+      "productSlug": "health",
+      "title": "Health insurance",
+      "description": "Flexible plans for individuals and family members.",
+      "imageUrl": "https://placehold.co/1200x520/10b981/ffffff?text=Health+Insurance"
+    }
+  ],
+  "calculators": {
+    "auto": {
+      "baseRate": 0.03,
+      "ageFactorUnder25": 1.25,
+      "expFactorUnder3": 1.2
+    },
+    "property": {
+      "baseRate": 0.002,
+      "areaFactorOver120": 1.1,
+      "securityHigh": 0.9
+    },
+    "health": {
+      "baseMonthly": 18,
+      "ageFactorOver45": 1.35,
+      "chronicFactor": 1.4
+    },
+    "travel": {
+      "baseDaily": 1.5,
+      "globalFactor": 1.7
+    },
+    "life": {
+      "baseMonthlyRate": 0.0012,
+      "ageFactorOver40": 1.5,
+      "termFactorOver15": 1.2
+    }
+  }
+}

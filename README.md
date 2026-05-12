@@ -60,3 +60,27 @@ Password hash is stored in `backend/data/admin.json`.
 cd frontend && npm run build
 cd ../backend && npm run build
 ```
+
+## Static demo (GitHub Pages)
+
+The landing can be built as **pure static files**: content and calculator rates come from `backend/data/content.json`, copied into `frontend/public/content.json` at build time (same shape as the admin API).
+
+1. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Push to `main` — workflow [`.github/workflows/deploy-github-pages.yml`](.github/workflows/deploy-github-pages.yml) runs `npm run build:static` in `frontend/`.
+3. Site URL: `https://<user>.github.io/<repo>/` (for this project: `https://allogolden8888.github.io/shindos_website/`).
+
+**Updating text/slides/rates for the static site:** change `backend/data/content.json` (via local admin or by hand), then either commit after `cd frontend && npm run sync-content`, or rely on the workflow copy from `backend/data` on each build.
+
+**Admin link from static site:** set repository variable **`ADMIN_BASE_URL`** (Settings → Secrets and variables → Actions → Variables) to your real backend URL, e.g. `https://your-api.example.com`. The `/admin` route on the static site redirects there. If unset, the build falls back to `localhost` (only for local static preview).
+
+**Local static preview:**
+```bash
+cd frontend
+npm run sync-content
+$env:VITE_CONTENT_SOURCE="static"   # PowerShell
+$env:VITE_BASE_PATH="/"
+npm run build:static
+npm run preview
+```
+Use `VITE_BASE_PATH=/shindos_website/` when testing the same base path as GitHub Pages.
+

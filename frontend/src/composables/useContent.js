@@ -35,7 +35,10 @@ export function useContent() {
         },
       };
     } catch (error) {
-      loadError.value = "Content API unavailable, fallback values are displayed.";
+      loadError.value =
+        import.meta.env.VITE_CONTENT_SOURCE === "static"
+          ? "Could not load content.json — check that public/content.json exists and base path is correct."
+          : "Content API unavailable, fallback values are displayed.";
     } finally {
       loading.value = false;
     }

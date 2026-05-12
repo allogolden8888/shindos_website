@@ -1,7 +1,10 @@
 <script setup>
 import { computed, onMounted } from "vue";
 
-const backendBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
+const backendBaseUrl =
+  import.meta.env.VITE_ADMIN_BASE_URL ||
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost:3000";
 const targetAdminUrl = computed(() => `${backendBaseUrl}/admin/login`);
 
 onMounted(() => {
